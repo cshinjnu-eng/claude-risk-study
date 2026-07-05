@@ -27,4 +27,5 @@ HOST=127.0.0.1 PORT=8780 python3 server.py
 - `app.js`：逐题交互、评分和自愿提交
 - `server.py`：静态文件与提交接口
 - `promo-poster.png`：宣传海报
+- `posters/`：五张“中文 / Claude Code / 高用量”辟谣图文
 - `assets/findings/`：可单独发布的研究图文

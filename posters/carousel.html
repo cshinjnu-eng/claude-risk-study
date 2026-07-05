@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Claude 封号传言核查</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        background: #777;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+      }
+      .poster {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        padding: 72px 76px 64px;
+        color: #171817;
+        background: #f2efe7;
+      }
+      .poster + .poster {
+        margin-top: 32px;
+      }
+      .dark {
+        color: #f4f1e9;
+        background: #151615 url("../assets/hero-network.webp") center / cover
+          no-repeat;
+      }
+      .dark::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          rgba(13, 14, 13, 0.98),
+          rgba(13, 14, 13, 0.78)
+        );
+      }
+      .red {
+        color: #fff8ed;
+        background: #d93c2f;
+      }
+      .ink {
+        color: #f4f1e9;
+        background: #1a1b1a;
+      }
+      .poster > * {
+        position: relative;
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        border-bottom: 1px solid currentColor;
+        font:
+          700 16px ui-monospace,
+          monospace;
+        letter-spacing: 0.08em;
+      }
+      .top b {
+        color: #ed493c;
+      }
+      .red .top b {
+        color: #181918;
+      }
+      .count {
+        margin-top: 84px;
+        font:
+          700 18px ui-monospace,
+          monospace;
+        color: #e94235;
+      }
+      .red .count {
+        color: #191a19;
+      }
+      h1 {
+        max-width: 900px;
+        margin: 30px 0 35px;
+        font-size: 92px;
+        line-height: 1.04;
+        letter-spacing: -0.055em;
+      }
+      h1 em {
+        color: #ed493c;
+        font-style: normal;
+      }
+      .red h1 em {
+        color: #171817;
+      }
+      .claim {
+        max-width: 830px;
+        margin: 0;
+        font-size: 31px;
+        line-height: 1.55;
+        color: #5f605c;
+      }
+      .dark .claim,
+      .ink .claim {
+        color: #c7c6c0;
+      }
+      .red .claim {
+        color: #fff0e5;
+      }
+      .verdict {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 44px;
+        margin-top: 72px;
+        padding: 38px 0;
+        border-top: 1px solid currentColor;
+        border-bottom: 1px solid currentColor;
+      }
+      .verdict strong {
+        font-size: 40px;
+        line-height: 1.25;
+      }
+      .verdict p {
+        margin: 0;
+        align-self: end;
+        font-size: 21px;
+        line-height: 1.6;
+        color: #696a65;
+      }
+      .dark .verdict p,
+      .ink .verdict p {
+        color: #afaea8;
+      }
+      .red .verdict p {
+        color: #ffe8dc;
+      }
+      .number {
+        margin-top: auto;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+      }
+      .number b {
+        color: #e94235;
+        font:
+          650 160px/0.8 ui-monospace,
+          monospace;
+        letter-spacing: -0.09em;
+      }
+      .red .number b {
+        color: #181918;
+      }
+      .number span {
+        max-width: 360px;
+        padding-bottom: 6px;
+        font-size: 20px;
+        line-height: 1.55;
+      }
+      .footer {
+        position: absolute;
+        left: 76px;
+        right: 76px;
+        bottom: 58px;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 18px;
+        border-top: 1px solid currentColor;
+        font-size: 15px;
+        opacity: 0.72;
+      }
+      .stack {
+        display: grid;
+        gap: 20px;
+        margin-top: 68px;
+      }
+      .stack div {
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        gap: 30px;
+        align-items: baseline;
+        padding: 24px 0;
+        border-top: 1px solid currentColor;
+      }
+      .stack b {
+        color: #e94235;
+        font:
+          700 30px ui-monospace,
+          monospace;
+      }
+      .stack span {
+        font-size: 25px;
+        line-height: 1.45;
+      }
+      .cta {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 60px;
+        align-items: end;
+        margin-top: 70px;
+      }
+      .cta h2 {
+        margin: 0;
+        font-size: 54px;
+        line-height: 1.18;
+        letter-spacing: -0.035em;
+      }
+      .cta p {
+        max-width: 600px;
+        margin: 24px 0 0;
+        font-size: 21px;
+        line-height: 1.6;
+        color: #696a65;
+      }
+      .qr-slot {
+        width: 220px;
+        height: 220px;
+        display: grid;
+        place-items: center;
+        border: 3px dashed #171817;
+        text-align: center;
+        font:
+          18px/1.5 ui-monospace,
+          monospace;
+      }
+      .cover h1 {
+        margin-top: 100px;
+        font-size: 99px;
+      }
+      .cover .claim {
+        font-size: 35px;
+      }
+      .cover-list {
+        margin-top: 75px;
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+      }
+      .cover-list p {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+        font-size: 26px;
+      }
+      .cover-list b {
+        color: #ff5a4c;
+        font:
+          700 18px ui-monospace,
+          monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="poster dark cover">
+      <div class="top"><span>CLAUDE / 封号传言核查</span><b>01 / 05</b></div>
+      <h1>三条最吓人的<br /><em>封号传言</em></h1>
+      <p class="claim">
+        我们拿 279 份问卷逐项对了一遍。先说结论：目前都没有稳定证据。
+      </p>
+      <div class="cover-list">
+        <p><span>“直接说中文就会被封”</span><b>未支持</b></p>
+        <p>
+          <span>“Claude Code 是间谍代码，用了会被封”</span><b>未支持后半句</b>
+        </p>
+        <p><span>“用量太高，账号就会被盯上”</span><b>未支持</b></p>
+      </div>
+      <div class="footer">
+        <span>独立调查 · 非 Anthropic 官方结论</span><span>向左翻，看数据</span>
+      </div>
+    </section>
+
+    <section class="poster">
+      <div class="top"><span>传言一 / 中文</span><b>02 / 05</b></div>
+      <p class="count">THE CLAIM</p>
+      <h1>“直接说中文，<br />账号就会被封。”</h1>
+      <p class="claim">这句话传得很快，但问卷没有给它撑腰。</p>
+      <div class="verdict">
+        <strong>没有看到稳定的风险差异。</strong>
+        <p>
+          中文、英文或混合使用，在当前样本中没有通过多重比较校正。语言不是这次分析里值得优先怀疑的因素。
+        </p>
+      </div>
+      <div class="number">
+        <b>NO</b
+        ><span
+          >“没有显著差异”不是证明永远无关，但足以反对“说中文必封”这种肯定句。</span
+        >
+      </div>
+      <div class="footer">
+        <span>249 个账号 · 日期调整后的每日风险模型</span
+        ><span>相关性不等于因果</span>
+      </div>
+    </section>
+
+    <section class="poster red">
+      <div class="top"><span>传言二 / CLAUDE CODE</span><b>03 / 05</b></div>
+      <p class="count">THE CLAIM</p>
+      <h1>“Claude Code 有间谍代码，<br />用了就会<em>封号</em>。”</h1>
+      <p class="claim">
+        这其实是两个问题：软件会收集什么数据，以及使用它会不会增加封号风险。问卷只能回答后一个。
+      </p>
+      <div class="verdict">
+        <strong>使用入口整体 q=0.441，未见稳定差异。</strong>
+        <p>
+          网页、桌面端、移动端、Claude Code 和 IDE
+          之间，没有观察到稳定的每日异常风险差异。
+        </p>
+      </div>
+      <div class="number">
+        <b>0.441</b
+        ><span
+          >这不能替代源码或网络安全审计，也不能据此断言软件“绝对安全”。它只说明“用了更容易被封”没有被问卷支持。</span
+        >
+      </div>
+      <div class="footer">
+        <span>问题总体检验 · BH 校正后 q 值</span
+        ><span>问卷不回答软件安全性</span>
+      </div>
+    </section>
+
+    <section class="poster ink">
+      <div class="top"><span>传言三 / 高用量</span><b>04 / 05</b></div>
+      <p class="count">THE CLAIM</p>
+      <h1>“额度用得太狠，<br />账号会被盯上。”</h1>
+      <p class="claim">
+        至少在这批问卷里，高用量没有表现出更高的每日异常风险。
+      </p>
+      <div class="verdict">
+        <strong>额度使用整体 q=0.885。</strong>
+        <p>
+          很少使用、中等使用、经常接近上限、频繁用满，这几组之间没有稳定差异。
+        </p>
+      </div>
+      <div class="number">
+        <b>0.885</b
+        ><span
+          >正常使用额度和自动化滥用不是同一回事。这里反驳的是“用得多就封”，不是替任何行为背书。</span
+        >
+      </div>
+      <div class="footer">
+        <span>224 个有效回答 · 全问题校正</span
+        ><span>别把额度焦虑当成风控规则</span>
+      </div>
+    </section>
+
+    <section class="poster">
+      <div class="top"><span>这份调查怎么做</span><b>05 / 05</b></div>
+      <p class="count">NOT A GROUP CHAT POLL</p>
+      <h1>不是看一眼<br />封号比例就下结论</h1>
+      <div class="stack">
+        <div><b>249</b><span>个账号进入主分析</span></div>
+        <div><b>1,872</b><span>个账号风险日，正常账号只算到填写当天</span></div>
+        <div>
+          <b>57</b><span>个事前问题统一扫描，不只挑看起来显著的结果</span>
+        </div>
+        <div>
+          <b>BH</b><span>多重比较校正，同时报告 OR、置信区间和 q 值</span>
+        </div>
+      </div>
+      <div class="cta">
+        <div>
+          <h2>11 题风险自测</h2>
+          <p>
+            看看哪些信号值得留意，哪些只是传言。百分制用于阅读，不是封号概率。
+          </p>
+        </div>
+        <div class="qr-slot">网站二维码<br />后续放置</div>
+      </div>
+      <div class="footer">
+        <span>独立调查 · 非 Anthropic 官方产品</span><span>2026.07</span>
+      </div>
+    </section>
+  </body>
+</html>
