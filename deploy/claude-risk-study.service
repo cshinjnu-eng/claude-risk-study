@@ -1,0 +1,23 @@
+[Unit]
+Description=Claude Risk Study
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/claude-risk-study
+Environment=HOST=127.0.0.1
+Environment=PORT=8780
+Environment=RISK_STUDY_DB=/var/lib/claude-risk-study/submissions.sqlite3
+ExecStart=/usr/bin/python3 /var/www/claude-risk-study/server.py
+Restart=on-failure
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/claude-risk-study
+
+[Install]
+WantedBy=multi-user.target
+

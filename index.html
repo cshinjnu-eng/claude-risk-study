@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Claude 封号风险信号自测：基于279份调查数据，6个问题快速评估。"
+    />
+    <title>Claude 风险信号自测 | 独立调查</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Atmosphere -->
+    <header class="site-head">
+      <a href="#top" class="wordmark">Claude / Risk Study</a>
+      <div class="study-state"><span></span>279 份调查支持</div>
+    </header>
+
+    <main id="top">
+      <!-- ═══ Hero ═══ -->
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker">Claude 使用风险自测</p>
+          <h1>看看你的账号，<br />有哪些<span>值得注意</span>的信号</h1>
+          <p class="lead">
+            回答 12 个简短问题，看看哪些因素需要留意，哪些传言暂时没有依据。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#assessment"
+              >开始评估 <span>&darr;</span></a
+            >
+            <span class="hero-meta">约 1 分钟完成</span>
+          </div>
+          <div class="hero-proof">
+            <span>279 份回答</span><span>1,872 个风险日</span
+            ><span>结果可解释</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="value-strip" aria-label="评估内容">
+        <div><b>01</b><span>识别真正影响结果的信号</span></div>
+        <div><b>02</b><span>理解哪些常见说法没有证据</span></div>
+        <div><b>03</b><span>获得针对当前情境的建议</span></div>
+      </section>
+
+      <!-- ═══ Assessment ═══ -->
+      <section id="assessment" class="assessment">
+        <header class="section-head">
+          <p class="overline">快速评估</p>
+          <h2>按实际情况<br />回答十二题</h2>
+          <p class="sub">
+            没有标准答案，也不用猜平台喜欢什么。按最近 7 天的情况选择即可。
+          </p>
+        </header>
+
+        <div class="assessment-grid">
+          <aside class="form-visual" aria-hidden="true">
+            <img src="assets/form-routes.webp" alt="" />
+            <div>
+              <span>01—12</span>
+              <p>每个答案都会在结果中说明是否参与评分，以及证据强弱。</p>
+            </div>
+          </aside>
+          <form id="riskForm" novalidate>
+            <div class="step-meter" aria-live="polite">
+              <span id="stepCount">问题 1 / 12</span>
+              <div><i id="stepBar"></i></div>
+            </div>
+            <fieldset>
+              <legend><span>1</span>过去 7 天，你本人主要在哪里？</legend>
+              <div class="choices" data-required="actual_location">
+                <label
+                  ><input
+                    type="radio"
+                    name="actual_location"
+                    value="mainland"
+                  /><span>中国大陆</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="actual_location"
+                    value="taiwan"
+                  /><span>台湾</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="actual_location"
+                    value="us_ca"
+                  /><span>美国或加拿大</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="actual_location"
+                    value="other_supported"
+                  /><span>其他支持地区</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="actual_location"
+                    value="other"
+                  /><span>其他地区</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>2</span>这个 Claude 账号用了多久？</legend>
+              <div class="choices" data-required="account_age">
+                <label
+                  ><input
+                    type="radio"
+                    name="account_age"
+                    value="under_7d"
+                  /><span>7 天以内</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="account_age"
+                    value="under_1m"
+                  /><span>1 个月以内</span></label
+                >
+                <label
+                  ><input type="radio" name="account_age" value="1_6m" /><span
+                    >1–6 个月</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="account_age" value="6_12m" /><span
+                    >6–12 个月</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="account_age"
+                    value="over_1y"
+                  /><span>1 年以上</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                <span>3</span>过去 7 天访问 Claude 时，你是否需要使用代理？
+              </legend>
+              <div class="choices compact" data-required="proxy_use">
+                <label
+                  ><input type="radio" name="proxy_use" value="always" /><span
+                    >每次都需要</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="proxy_use"
+                    value="sometimes"
+                  /><span>有时需要</span></label
+                >
+                <label
+                  ><input type="radio" name="proxy_use" value="never" /><span
+                    >不需要</span
+                  ></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                <span>4</span>需要代理时，有没有在代理未连接或失效时打开过
+                Claude？
+              </legend>
+              <div class="choices compact" data-required="unproxied">
+                <label
+                  ><input type="radio" name="unproxied" value="never" /><span
+                    >确认没有</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="unproxied" value="possible" /><span
+                    >可能有过</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="unproxied" value="repeated" /><span
+                    >明确有过多次</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="unproxied" value="unknown" /><span
+                    >不确定</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="unproxied"
+                    value="not_applicable"
+                  /><span>不需要代理</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>5</span>过去 7 天最常用的节点在哪个地区？</legend>
+              <div class="choices" data-required="node_region">
+                <label
+                  ><input
+                    type="radio"
+                    name="node_region"
+                    value="singapore"
+                  /><span>新加坡</span></label
+                >
+                <label
+                  ><input type="radio" name="node_region" value="us_ca" /><span
+                    >美国或加拿大</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="node_region" value="japan" /><span
+                    >日本</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="node_region" value="taiwan" /><span
+                    >台湾</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="node_region" value="other" /><span
+                    >其他或多地区</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="node_region"
+                    value="not_applicable"
+                  /><span>不使用代理</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>6</span>主要节点属于哪种网络？</legend>
+              <div class="choices" data-required="node_type">
+                <label
+                  ><input
+                    type="radio"
+                    name="node_type"
+                    value="residential"
+                  /><span>家宽或住宅 IP</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="node_type"
+                    value="datacenter"
+                  /><span>机房或数据中心 IP</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="node_type"
+                    value="organization"
+                  /><span>公司、学校或机构网络</span></label
+                >
+                <label
+                  ><input type="radio" name="node_type" value="unknown" /><span
+                    >不清楚</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="node_type"
+                    value="not_applicable"
+                  /><span>不使用代理</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>7</span>这个节点通常由多少人共享？</legend>
+              <div class="choices compact" data-required="node_sharing">
+                <label
+                  ><input
+                    type="radio"
+                    name="node_sharing"
+                    value="private"
+                  /><span>仅本人或固定家庭</span></label
+                >
+                <label
+                  ><input type="radio" name="node_sharing" value="small" /><span
+                    >少量固定用户</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="node_sharing" value="large" /><span
+                    >机场或大量用户</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="node_sharing"
+                    value="unknown"
+                  /><span>不清楚</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="node_sharing"
+                    value="not_applicable"
+                  /><span>不使用代理</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>8</span>设备时区通常和哪边一致？</legend>
+              <div class="choices compact" data-required="timezone_match">
+                <label
+                  ><input
+                    type="radio"
+                    name="timezone_match"
+                    value="actual"
+                  /><span>和本人所在地一致</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="timezone_match"
+                    value="proxy"
+                  /><span>和代理出口一致</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="timezone_match"
+                    value="both"
+                  /><span>两边本来就一致</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="timezone_match"
+                    value="neither"
+                  /><span>两边都不一致</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="timezone_match"
+                    value="unknown"
+                  /><span>不清楚</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>9</span>Google 账号的主要地区是什么？</legend>
+              <div class="choices compact" data-required="google_region">
+                <label
+                  ><input
+                    type="radio"
+                    name="google_region"
+                    value="us_ca"
+                  /><span>美国或加拿大</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="google_region"
+                    value="taiwan"
+                  /><span>台湾</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="google_region"
+                    value="other"
+                  /><span>其他地区</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="google_region"
+                    value="unknown"
+                  /><span>不清楚</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="google_region"
+                    value="not_google"
+                  /><span>不使用 Google 登录</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>10</span>你是否用指纹浏览器登录过 Claude？</legend>
+              <div class="choices compact" data-required="fingerprint_browser">
+                <label
+                  ><input
+                    type="radio"
+                    name="fingerprint_browser"
+                    value="never"
+                  /><span>从未使用</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="fingerprint_browser"
+                    value="fixed"
+                  /><span>使用，且环境固定</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="fingerprint_browser"
+                    value="changed"
+                  /><span>使用，环境有变化</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="fingerprint_browser"
+                    value="unknown"
+                  /><span>不确定</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>11</span>Claude 套餐主要怎么付款？</legend>
+              <div class="choices" data-required="payment_method">
+                <label
+                  ><input type="radio" name="payment_method" value="own" /><span
+                    >本人银行卡或长期使用的支付账号</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="payment_method"
+                    value="app_store"
+                  /><span>App Store 或 Google Play</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="payment_method"
+                    value="third_party"
+                  /><span>第三方代充或成品号</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="payment_method"
+                    value="shared"
+                  /><span>他人代付或共享付款方式</span></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="payment_method"
+                    value="free"
+                  /><span>免费套餐</span></label
+                >
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend><span>12</span>你最常通过哪个入口使用 Claude？</legend>
+              <div class="choices" data-required="access_mode">
+                <label
+                  ><input type="radio" name="access_mode" value="web" /><span
+                    >浏览器网页</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="access_mode"
+                    value="desktop"
+                  /><span>电脑端软件</span></label
+                >
+                <label
+                  ><input type="radio" name="access_mode" value="mobile" /><span
+                    >移动端 App</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="access_mode" value="code" /><span
+                    >Claude Code 或终端</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="access_mode" value="ide" /><span
+                    >IDE 或编辑器</span
+                  ></label
+                >
+                <label
+                  ><input type="radio" name="access_mode" value="mixed" /><span
+                    >多个入口混用</span
+                  ></label
+                >
+              </div>
+            </fieldset>
+
+            <div id="formError" class="form-error" role="alert" hidden>
+              请选择一个答案后继续。
+            </div>
+            <div class="step-actions">
+              <button id="prevStep" type="button" hidden>上一题</button>
+              <button id="nextStep" type="button">下一题</button>
+              <button class="submit-risk" type="submit" hidden>
+                查看我的结果
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ═══ Result ═══ -->
+      <section id="result" class="result" hidden aria-live="polite">
+        <header>
+          <p>你的评估结果</p>
+          <div class="result-heading">
+            <h2 id="riskLabel">—</h2>
+            <div class="score">
+              <b id="riskScore">—</b><span>净证据分</span>
+            </div>
+          </div>
+          <p id="riskMeaning" class="result-meaning"></p>
+        </header>
+        <div class="result-columns">
+          <div>
+            <h3>本次加分与减分</h3>
+            <ul id="factorList"></ul>
+          </div>
+          <div>
+            <h3>建议</h3>
+            <ul id="adviceList"></ul>
+          </div>
+        </div>
+        <div class="result-caveat">
+          <strong>不是封号概率</strong>
+          <p>
+            分数只用来汇总这份调查里的风险和保护方向。它不是平台评分，也不是你未来被封的概率。
+          </p>
+        </div>
+      </section>
+
+      <section class="findings" aria-labelledby="findingsTitle">
+        <header class="findings-head">
+          <p class="overline">研究发现</p>
+          <h2 id="findingsTitle">哪些因素值得看，<br />哪些暂时别下结论</h2>
+          <p>
+            这次分析纳入 249 个账号和 1,872
+            个风险日。下面说的都是问卷里的相关性，不是平台公开的封号规则。
+          </p>
+        </header>
+
+        <article class="finding finding-signal">
+          <div class="finding-copy">
+            <span>先检查这一项</span>
+            <h3>如果人在大陆，先确认代理有没有掉线</h3>
+            <p>
+              回答“可能发生过”的账号，每日异常风险比约为 2.18（95% CI
+              1.49–3.21）。这项关系最稳定，但仍可能混入所在地和回忆误差。
+            </p>
+          </div>
+          <svg
+            viewBox="0 0 520 180"
+            role="img"
+            aria-label="未代理连接风险比及置信区间"
+          >
+            <line x1="65" y1="115" x2="480" y2="115" />
+            <line class="reference" x1="150" y1="35" x2="150" y2="145" />
+            <line class="interval" x1="244" y1="88" x2="433" y2="88" />
+            <circle cx="321" cy="88" r="11" />
+            <text x="65" y="145">0.5</text>
+            <text x="142" y="145">1</text>
+            <text x="271" y="145">2</text>
+            <text x="451" y="145">4</text>
+            <text class="chart-value" x="300" y="55">OR 2.18</text>
+          </svg>
+        </article>
+
+        <article class="finding finding-protective">
+          <div class="finding-copy">
+            <span>较低风险方向</span>
+            <h3>保护因素也要看，但不能把它们当成“保号技巧”</h3>
+            <p>
+              下面几项在预设分析中和较低风险同时出现。部分组样本很少，而且没有全部通过严格的全变量校正。
+            </p>
+          </div>
+          <ul class="null-list direction-list">
+            <li><b>Google 地区为美国/加拿大</b><span>OR 0.14</span></li>
+            <li><b>从未使用指纹浏览器</b><span>OR 0.55</span></li>
+            <li><b>私人独享节点</b><span>OR 0.56</span></li>
+            <li><b>机房或数据中心 IP</b><span>OR 0.58</span></li>
+          </ul>
+        </article>
+
+        <article class="finding finding-payment">
+          <div class="finding-copy">
+            <span>支付方式</span>
+            <h3>本人支付呈较低风险方向，其他付款方式暂时分不出高下</h3>
+            <p>
+              本人银行卡或长期使用的支付账号 OR 约为 0.42，但校正后
+              q=0.063，只能算接近显著。付款失败属于另一类事件，不和封禁、受限混在一起评分。
+            </p>
+          </div>
+          <div class="payment-mark" aria-label="本人支付风险比约0.42">
+            <b>0.42</b><span>本人支付的观察 OR</span
+            ><small>95% CI 0.18–0.97</small>
+          </div>
+        </article>
+
+        <article class="finding finding-null">
+          <div class="finding-copy">
+            <span>暂时看不出差别</span>
+            <h3>使用入口、额度、时区和 Google 手机号都不该拿来吓人</h3>
+            <p>
+              当前样本没有给出稳定关系。这不等于它们永远无关，只是现在没有理由把这些项目写进风险分。
+            </p>
+          </div>
+          <ul class="null-list">
+            <li><b>使用入口</b><span>q=0.441</span></li>
+            <li><b>额度使用</b><span>q=0.885</span></li>
+            <li><b>设备时区</b><span>q≥0.646</span></li>
+            <li><b>Google 手机号</b><span>n=39，q≥0.703</span></li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- ═══ Participation ═══ -->
+      <section id="participation" class="participation" hidden>
+        <header class="participation-head">
+          <p class="overline">结果之后 · 完全自愿</p>
+          <h2>愿意帮助我们把研究做得更好吗？</h2>
+          <p>
+            提交更多使用细节可以提升群体统计的精度。不参与不会影响你的评估结果。
+          </p>
+        </header>
+
+        <div class="consent-choice" role="radiogroup" aria-label="参与方式">
+          <label
+            ><input type="radio" name="consent_mode" value="research" /><span
+              ><b>参与调查</b
+              ><small>填写扩展信息后主动提交，帮助改进群体模型</small></span
+            ></label
+          >
+          <label
+            ><input
+              type="radio"
+              name="consent_mode"
+              value="local"
+              checked
+            /><span><b>暂不参与</b><small>保留当前评估结果</small></span></label
+          >
+        </div>
+
+        <form id="researchForm" hidden>
+          <div class="privacy-notice">
+            <strong>提交前说明</strong>
+            <ul>
+              <li>不收集姓名、邮箱、Claude 账号或 Google 账号。</li>
+              <li>服务器仅保存问卷答案、提交时间和随机编号。</li>
+              <li>数据用于改进群体统计模型，不用于识别个人。</li>
+              <li>测试原型，正式公开前仍需补充完整隐私政策。</li>
+            </ul>
+          </div>
+
+          <fieldset>
+            <legend>主要通过哪些入口使用 Claude？</legend>
+            <div class="choices check">
+              <label
+                ><input type="checkbox" name="access_modes" value="web" /><span
+                  >浏览器网页</span
+                ></label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="access_modes"
+                  value="desktop"
+                /><span>电脑端应用</span></label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="access_modes"
+                  value="mobile"
+                /><span>移动端 App</span></label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="access_modes"
+                  value="claude_code"
+                /><span>Claude Code/终端</span></label
+              >
+              <label
+                ><input type="checkbox" name="access_modes" value="ide" /><span
+                  >IDE/编辑器</span
+                ></label
+              >
+            </div>
+          </fieldset>
+
+          <div class="two-up">
+            <label class="select-field"
+              >主要登录方式<select name="auth_method" required>
+                <option value="">请选择</option>
+                <option value="google">Google 账号</option>
+                <option value="apple">Apple 账号</option>
+                <option value="email">邮箱</option>
+                <option value="other">其他</option>
+              </select></label
+            >
+            <label class="select-field"
+              >额度使用情况<select name="quota_usage" required>
+                <option value="">请选择</option>
+                <option value="low">很少使用</option>
+                <option value="medium">中等使用</option>
+                <option value="high">经常接近上限</option>
+                <option value="limit">经常用满或触发限制</option>
+              </select></label
+            >
+          </div>
+
+          <div id="googleFields" class="google-fields" hidden>
+            <label class="select-field"
+              >Google 绑定手机号类型<select name="google_phone_type">
+                <option value="">请选择</option>
+                <option value="personal_sim">本人长期使用的实体手机号</option>
+                <option value="virtual">虚拟/接码号码</option>
+                <option value="none">从未绑定手机号</option>
+                <option value="unknown">不确定</option>
+              </select></label
+            >
+            <label class="select-field"
+              >手机号国家或地区<select name="google_phone_region">
+                <option value="">请选择</option>
+                <option value="cn">中国大陆 +86</option>
+                <option value="us_ca">美国/加拿大 +1</option>
+                <option value="hk_mo_tw">港澳台</option>
+                <option value="other">其他</option>
+                <option value="none">未绑定</option>
+              </select></label
+            >
+            <label class="select-field"
+              >Google 法定地区<select name="google_legal_region">
+                <option value="">请选择</option>
+                <option value="us_ca">美国/加拿大</option>
+                <option value="cn">中国大陆</option>
+                <option value="tw">台湾</option>
+                <option value="other">其他</option>
+                <option value="unknown">找不到/不确定</option>
+              </select></label
+            >
+          </div>
+
+          <fieldset>
+            <legend>主要用途（可多选）</legend>
+            <div class="choices check">
+              <label
+                ><input type="checkbox" name="use_cases" value="study" /><span
+                  >学习/科研</span
+                ></label
+              >
+              <label
+                ><input type="checkbox" name="use_cases" value="coding" /><span
+                  >编程开发</span
+                ></label
+              >
+              <label
+                ><input type="checkbox" name="use_cases" value="office" /><span
+                  >办公/翻译</span
+                ></label
+              >
+              <label
+                ><input type="checkbox" name="use_cases" value="writing" /><span
+                  >写作/创作</span
+                ></label
+              >
+              <label
+                ><input type="checkbox" name="use_cases" value="chat" /><span
+                  >聊天/问答</span
+                ></label
+              >
+              <label
+                ><input
+                  type="checkbox"
+                  name="use_cases"
+                  value="business"
+                /><span>商业业务</span></label
+              >
+            </div>
+          </fieldset>
+
+          <label class="consent-check"
+            ><input type="checkbox" name="explicit_consent" required /><span
+              >我已阅读以上说明，自愿将基础答案和扩展答案提交用于匿名统计研究。</span
+            ></label
+          >
+          <button id="sendResearch" class="send-research" type="submit">
+            同意并提交
+          </button>
+          <p id="submitStatus" class="submit-status" role="status"></p>
+        </form>
+      </section>
+
+      <!-- ═══ Methods ═══ -->
+      <section class="method-note">
+        <h2>研究边界</h2>
+        <div class="method-body">
+          <p>
+            <strong>能说明：</strong
+            >哪些用户画像在当前自愿填写样本中与每日异常风险相关。
+          </p>
+          <p>
+            <strong>不能说明：</strong>Anthropic
+            实际采用了哪些风控信号，也不能估计全部 Claude 用户的真实封号率。
+          </p>
+          <p>
+            <strong>当前最重要限制：</strong
+            >便利抽样、自报暴露、部分新增题样本较少，以及缺少平台侧日志。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Claude 使用风险独立调查 · 测试原型</p>
+      <p>与 Anthropic 无隶属关系</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
