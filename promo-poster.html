@@ -123,13 +123,19 @@
         color: #bab9b3;
         font-size: 18px;
       }
-      .arrow {
-        width: 105px;
-        height: 105px;
+      .qr-placeholder {
+        width: 190px;
+        height: 190px;
         display: grid;
         place-items: center;
-        background: #df3d30;
-        font-size: 50px;
+        padding: 28px;
+        border: 2px dashed rgba(255, 255, 255, 0.72);
+        background: rgba(15, 16, 15, 0.7);
+        color: #cecdc7;
+        text-align: center;
+        font:
+          16px/1.5 ui-monospace,
+          monospace;
       }
       footer {
         position: relative;
@@ -148,31 +154,30 @@
       <div class="topline">
         <span>CLAUDE / RISK STUDY</span><span>279 份问卷支持</span>
       </div>
-      <h1>你的账号，<br />有哪些<em>值得留意</em>的信号？</h1>
+      <h1>用中文、Claude Code、<br />高用量会导致<em>封号</em>吗？</h1>
       <p class="lead">
-        12
-        个简短问题。按实际情况回答，查看风险方向、保护方向和目前没有证据的传言。
+        目前没有稳定证据。我们分析了 279 份问卷，不靠群聊传言猜原因。
       </p>
       <section class="evidence">
         <div>
-          <b>+ RISK</b><strong>先分清人在哪里，代理有没有掉线</strong>
-          <p>同一个“裸连”答案，在不同所在地并不是一回事。</p>
+          <b>249 ACCOUNTS</b><strong>按账号逐日计算风险</strong>
+          <p>共展开为 1,872 个风险日，不把早填问卷的正常账号当长期幸存者。</p>
         </div>
         <div>
-          <b>− LOWER</b><strong>保护方向也会进入分数</strong>
-          <p>本人支付、私人节点等结果会显示，但不会包装成保号技巧。</p>
+          <b>57 QUESTIONS</b><strong>所有事前变量统一扫描</strong>
+          <p>使用方式、额度、时区、手机号等都进入检验，不只挑显著结果。</p>
         </div>
         <div>
-          <b>0 UNKNOWN</b><strong>没证据的因素不会硬算分</strong>
-          <p>使用入口、额度、时区和手机号目前不直接加减分。</p>
+          <b>BH CORRECTION</b><strong>控制多重比较</strong>
+          <p>同时报告 OR、置信区间和校正后的 q 值，相关性不写成因果。</p>
         </div>
       </section>
       <div class="action">
         <div>
-          <h2>看看自己的净证据分，<br />再决定什么值得调整。</h2>
-          <p>独立调查工具 · 非 Anthropic 官方产品 · 分数不是封号概率</p>
+          <h2>11 题风险自测：<br />哪些值得留意，哪些只是传言。</h2>
+          <p>独立调查工具 · 非 Anthropic 官方产品 · 百分制不是封号概率</p>
         </div>
-        <div class="arrow">↘</div>
+        <div class="qr-placeholder">网站二维码<br />后续放置</div>
       </div>
       <footer><span>claude-risk-study</span><span>2026.07</span></footer>
     </main>

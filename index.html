@@ -24,7 +24,7 @@
           <p class="kicker">Claude 使用风险自测</p>
           <h1>看看你的账号，<br />有哪些<span>值得注意</span>的信号</h1>
           <p class="lead">
-            回答 12 个简短问题，看看哪些因素需要留意，哪些传言暂时没有依据。
+            回答 11 个简短问题，看看哪些因素需要留意，哪些传言暂时没有依据。
           </p>
           <div class="hero-actions">
             <a class="primary-action" href="#assessment"
@@ -49,7 +49,7 @@
       <section id="assessment" class="assessment">
         <header class="section-head">
           <p class="overline">快速评估</p>
-          <h2>按实际情况<br />回答十二题</h2>
+          <h2>按实际情况<br />回答十一题</h2>
           <p class="sub">
             没有标准答案，也不用猜平台喜欢什么。按最近 7 天的情况选择即可。
           </p>
@@ -59,13 +59,13 @@
           <aside class="form-visual" aria-hidden="true">
             <img src="assets/form-routes.webp" alt="" />
             <div>
-              <span>01—12</span>
+              <span>01—11</span>
               <p>每个答案都会在结果中说明是否参与评分，以及证据强弱。</p>
             </div>
           </aside>
           <form id="riskForm" novalidate>
             <div class="step-meter" aria-live="polite">
-              <span id="stepCount">问题 1 / 12</span>
+              <span id="stepCount">问题 1 / 11</span>
               <div><i id="stepBar"></i></div>
             </div>
             <fieldset>
@@ -148,33 +148,7 @@
 
             <fieldset>
               <legend>
-                <span>3</span>过去 7 天访问 Claude 时，你是否需要使用代理？
-              </legend>
-              <div class="choices compact" data-required="proxy_use">
-                <label
-                  ><input type="radio" name="proxy_use" value="always" /><span
-                    >每次都需要</span
-                  ></label
-                >
-                <label
-                  ><input
-                    type="radio"
-                    name="proxy_use"
-                    value="sometimes"
-                  /><span>有时需要</span></label
-                >
-                <label
-                  ><input type="radio" name="proxy_use" value="never" /><span
-                    >不需要</span
-                  ></label
-                >
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>
-                <span>4</span>需要代理时，有没有在代理未连接或失效时打开过
-                Claude？
+                <span>3</span>有没有在代理未连接或失效时打开过 Claude？
               </legend>
               <div class="choices compact" data-required="unproxied">
                 <label
@@ -208,7 +182,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>5</span>过去 7 天最常用的节点在哪个地区？</legend>
+              <legend><span>4</span>过去 7 天最常用的节点在哪个地区？</legend>
               <div class="choices" data-required="node_region">
                 <label
                   ><input
@@ -248,7 +222,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>6</span>主要节点属于哪种网络？</legend>
+              <legend><span>5</span>主要节点属于哪种网络？</legend>
               <div class="choices" data-required="node_type">
                 <label
                   ><input
@@ -287,7 +261,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>7</span>这个节点通常由多少人共享？</legend>
+              <legend><span>6</span>这个节点通常由多少人共享？</legend>
               <div class="choices compact" data-required="node_sharing">
                 <label
                   ><input
@@ -324,7 +298,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>8</span>设备时区通常和哪边一致？</legend>
+              <legend><span>7</span>设备时区通常和哪边一致？</legend>
               <div class="choices compact" data-required="timezone_match">
                 <label
                   ><input
@@ -365,7 +339,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>9</span>Google 账号的主要地区是什么？</legend>
+              <legend><span>8</span>Google 账号的主要地区是什么？</legend>
               <div class="choices compact" data-required="google_region">
                 <label
                   ><input
@@ -406,7 +380,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>10</span>你是否用指纹浏览器登录过 Claude？</legend>
+              <legend><span>9</span>你是否用指纹浏览器登录过 Claude？</legend>
               <div class="choices compact" data-required="fingerprint_browser">
                 <label
                   ><input
@@ -440,7 +414,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>11</span>Claude 套餐主要怎么付款？</legend>
+              <legend><span>10</span>Claude 套餐主要怎么付款？</legend>
               <div class="choices" data-required="payment_method">
                 <label
                   ><input type="radio" name="payment_method" value="own" /><span
@@ -479,7 +453,7 @@
             </fieldset>
 
             <fieldset>
-              <legend><span>12</span>你最常通过哪个入口使用 Claude？</legend>
+              <legend><span>11</span>你最常通过哪个入口使用 Claude？</legend>
               <div class="choices" data-required="access_mode">
                 <label
                   ><input type="radio" name="access_mode" value="web" /><span
@@ -536,9 +510,7 @@
           <p>你的评估结果</p>
           <div class="result-heading">
             <h2 id="riskLabel">—</h2>
-            <div class="score">
-              <b id="riskScore">—</b><span>净证据分</span>
-            </div>
+            <div class="score"><b id="riskScore">—</b><span>/ 100</span></div>
           </div>
           <p id="riskMeaning" class="result-meaning"></p>
         </header>
@@ -555,7 +527,8 @@
         <div class="result-caveat">
           <strong>不是封号概率</strong>
           <p>
-            分数只用来汇总这份调查里的风险和保护方向。它不是平台评分，也不是你未来被封的概率。
+            百分制只是把各题权重换算到
+            0–100，方便阅读。它不是平台评分，也不是你未来被封的概率。
           </p>
         </div>
       </section>
@@ -647,12 +620,26 @@
       <!-- ═══ Participation ═══ -->
       <section id="participation" class="participation" hidden>
         <header class="participation-head">
-          <p class="overline">结果之后 · 完全自愿</p>
-          <h2>愿意帮助我们把研究做得更好吗？</h2>
+          <p class="overline">完整调查 · 自愿参与</p>
+          <h2>愿意多填一些？<br />请到飞书问卷</h2>
           <p>
-            提交更多使用细节可以提升群体统计的精度。不参与不会影响你的评估结果。
+            完整问卷会继续询问使用强度、Google
+            账号、付款和多账号情况。无需登录，也不收集姓名。
           </p>
         </header>
+
+        <a
+          class="survey-qr"
+          href="https://scn1g64tu9w3.feishu.cn/share/base/shrcn0TDOcBcRe38YrsKorg9yf8"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="assets/feishu-survey-qr.png" alt="飞书完整调查二维码" />
+          <span
+            ><b>扫码填写完整调查</b
+            ><small>也可以点击二维码直接打开</small></span
+          >
+        </a>
 
         <div class="consent-choice" role="radiogroup" aria-label="参与方式">
           <label
