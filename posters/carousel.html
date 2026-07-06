@@ -245,11 +245,72 @@
           700 18px ui-monospace,
           monospace;
       }
+      .site-entry {
+        position: absolute;
+        right: 76px;
+        bottom: 94px;
+        width: 118px;
+        height: 118px;
+        display: grid;
+        place-items: center;
+        padding: 12px;
+        border: 2px dashed currentColor;
+        background: rgba(18, 19, 18, 0.82);
+        color: #f4f1e9;
+        text-align: center;
+        font:
+          13px/1.4 ui-monospace,
+          monospace;
+      }
+      .poster:not(.dark):not(.ink):not(.red) .site-entry {
+        background: #f2efe7;
+        color: #171817;
+      }
+      .red .site-entry {
+        background: #d93c2f;
+        color: #fff8ed;
+      }
+      .factor-page h1 {
+        margin-top: 70px;
+        font-size: 78px;
+      }
+      .factor-page .claim {
+        font-size: 25px;
+      }
+      .factor-list {
+        margin-top: 52px;
+        border-top: 1px solid currentColor;
+      }
+      .factor-list div {
+        display: grid;
+        grid-template-columns: 1fr 170px;
+        gap: 30px;
+        align-items: center;
+        padding: 24px 0;
+        border-bottom: 1px solid currentColor;
+      }
+      .factor-list strong {
+        display: block;
+        font-size: 28px;
+      }
+      .factor-list small {
+        display: block;
+        margin-top: 7px;
+        color: #aaa9a3;
+        font-size: 17px;
+      }
+      .factor-list b {
+        color: #ed493c;
+        text-align: right;
+        font:
+          700 31px ui-monospace,
+          monospace;
+      }
     </style>
   </head>
   <body>
     <section class="poster dark cover">
-      <div class="top"><span>CLAUDE / 封号传言核查</span><b>01 / 05</b></div>
+      <div class="top"><span>CLAUDE / 封号传言核查</span><b>01 / 07</b></div>
       <h1>三条最吓人的<br /><em>封号传言</em></h1>
       <p class="claim">
         我们拿 279 份问卷逐项对了一遍。先说结论：目前都没有稳定证据。
@@ -261,13 +322,14 @@
         </p>
         <p><span>“用量太高，账号就会被盯上”</span><b>未支持</b></p>
       </div>
+      <div class="site-entry">网站自测<br />二维码位</div>
       <div class="footer">
         <span>独立调查 · 非 Anthropic 官方结论</span><span>向左翻，看数据</span>
       </div>
     </section>
 
     <section class="poster">
-      <div class="top"><span>传言一 / 中文</span><b>02 / 05</b></div>
+      <div class="top"><span>传言一 / 中文</span><b>02 / 07</b></div>
       <p class="count">THE CLAIM</p>
       <h1>“直接说中文，<br />账号就会被封。”</h1>
       <p class="claim">这句话传得很快，但问卷没有给它撑腰。</p>
@@ -283,6 +345,7 @@
           >“没有显著差异”不是证明永远无关，但足以反对“说中文必封”这种肯定句。</span
         >
       </div>
+      <div class="site-entry">网站自测<br />二维码位</div>
       <div class="footer">
         <span>249 个账号 · 日期调整后的每日风险模型</span
         ><span>相关性不等于因果</span>
@@ -290,7 +353,7 @@
     </section>
 
     <section class="poster red">
-      <div class="top"><span>传言二 / CLAUDE CODE</span><b>03 / 05</b></div>
+      <div class="top"><span>传言二 / CLAUDE CODE</span><b>03 / 07</b></div>
       <p class="count">THE CLAIM</p>
       <h1>“Claude Code 有间谍代码，<br />用了就会<em>封号</em>。”</h1>
       <p class="claim">
@@ -309,6 +372,7 @@
           >这不能替代源码或网络安全审计，也不能据此断言软件“绝对安全”。它只说明“用了更容易被封”没有被问卷支持。</span
         >
       </div>
+      <div class="site-entry">网站自测<br />二维码位</div>
       <div class="footer">
         <span>问题总体检验 · BH 校正后 q 值</span
         ><span>问卷不回答软件安全性</span>
@@ -316,7 +380,7 @@
     </section>
 
     <section class="poster ink">
-      <div class="top"><span>传言三 / 高用量</span><b>04 / 05</b></div>
+      <div class="top"><span>传言三 / 高用量</span><b>04 / 07</b></div>
       <p class="count">THE CLAIM</p>
       <h1>“额度用得太狠，<br />账号会被盯上。”</h1>
       <p class="claim">
@@ -334,14 +398,98 @@
           >正常使用额度和自动化滥用不是同一回事。这里反驳的是“用得多就封”，不是替任何行为背书。</span
         >
       </div>
+      <div class="site-entry">网站自测<br />二维码位</div>
       <div class="footer">
         <span>224 个有效回答 · 全问题校正</span
         ><span>别把额度焦虑当成风控规则</span>
       </div>
     </section>
 
+    <section class="poster ink factor-page">
+      <div class="top"><span>目前看到的风险方向</span><b>05 / 07</b></div>
+      <h1>真正值得先看的，<br />不是中文或用量</h1>
+      <p class="claim">
+        下面几项和更高的每日异常风险同时出现。它们是相关线索，不是平台公开的封号规则。
+      </p>
+      <div class="factor-list">
+        <div>
+          <span
+            ><strong>可能发生过代理失效</strong
+            ><small>目前最稳定的具体风险方向</small></span
+          ><b>OR 2.18</b>
+        </div>
+        <div>
+          <span
+            ><strong>账号使用 1–6 个月</strong
+            ><small>账号年龄问题整体通过校正</small></span
+          ><b>OR 1.87</b>
+        </div>
+        <div>
+          <span
+            ><strong>主要使用新加坡节点</strong
+            ><small>预设分析显著，全变量扫描后证据减弱</small></span
+          ><b>OR 2.25</b>
+        </div>
+        <div>
+          <span
+            ><strong>公司、学校或机构网络</strong
+            ><small>效应较大，但该组只有 10 个账号</small></span
+          ><b>OR 3.42</b>
+        </div>
+      </div>
+      <div class="site-entry">网站自测<br />二维码位</div>
+      <div class="footer">
+        <span>日期调整后的每日风险比</span
+        ><span>先看连接状态，再看账号环境</span>
+      </div>
+    </section>
+
+    <section class="poster factor-page">
+      <div class="top"><span>目前看到的保护方向</span><b>06 / 07</b></div>
+      <h1>有些账号画像，<br />风险方向更低</h1>
+      <p class="claim">
+        这些因素在样本中和较低风险同时出现。别反过来把它们当成“照着做就不会封”的教程。
+      </p>
+      <div class="factor-list">
+        <div>
+          <span
+            ><strong>Google 地区为美国或加拿大</strong
+            ><small>有效样本少，需要谨慎</small></span
+          ><b>OR 0.14</b>
+        </div>
+        <div>
+          <span
+            ><strong>从未使用指纹浏览器</strong
+            ><small>全变量扫描没有重复出这一结果</small></span
+          ><b>OR 0.55</b>
+        </div>
+        <div>
+          <span
+            ><strong>私人独享节点</strong
+            ><small>节点共享问题整体未通过严格校正</small></span
+          ><b>OR 0.56</b>
+        </div>
+        <div>
+          <span
+            ><strong>机房或数据中心 IP</strong
+            ><small>观察结果不等于机房 IP 能保护账号</small></span
+          ><b>OR 0.58</b>
+        </div>
+        <div>
+          <span
+            ><strong>本人支付</strong
+            ><small>校正后 q=0.063，属于接近显著</small></span
+          ><b>OR 0.42</b>
+        </div>
+      </div>
+      <div class="site-entry">网站自测<br />二维码位</div>
+      <div class="footer">
+        <span>较低风险方向 ≠ 保号方法</span><span>相关性不等于因果</span>
+      </div>
+    </section>
+
     <section class="poster">
-      <div class="top"><span>这份调查怎么做</span><b>05 / 05</b></div>
+      <div class="top"><span>这份调查怎么做</span><b>07 / 07</b></div>
       <p class="count">NOT A GROUP CHAT POLL</p>
       <h1>不是看一眼<br />封号比例就下结论</h1>
       <div class="stack">
