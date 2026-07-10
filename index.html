@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Claude 封号风险信号自测：基于279份调查数据，6个问题快速评估。"
+      content="Claude 账号异常风险信号自测：基于279份问卷、249个纳入账号和1872个风险日。"
     />
     <title>Claude 风险信号自测 | 独立调查</title>
     <link rel="stylesheet" href="styles.css" />
@@ -21,35 +21,49 @@
       <!-- ═══ Hero ═══ -->
       <section class="hero">
         <div class="hero-copy">
-          <p class="kicker">Claude 使用风险自测</p>
-          <h1>看看你的账号，<br />有哪些<span>值得注意</span>的信号</h1>
+          <p class="kicker">279 份问卷后的公开结果</p>
+          <h1>别靠传言猜。<br />看看哪些信号<span>真的值得看</span></h1>
           <p class="lead">
-            回答 11 个简短问题，看看哪些因素需要留意，哪些传言暂时没有依据。
+            11
+            个问题，得到一份可解释的证据指数。它会区分较稳定的发现、探索性线索和目前没有依据的说法。
           </p>
           <div class="hero-actions">
             <a class="primary-action" href="#assessment"
               >开始评估 <span>&darr;</span></a
             >
-            <span class="hero-meta">约 1 分钟完成</span>
+            <span class="hero-meta">约 90 秒 · 不需要账号信息</span>
           </div>
           <div class="hero-proof">
-            <span>279 份回答</span><span>1,872 个风险日</span
-            ><span>结果可解释</span>
+            <span>249 个账号纳入主分析</span><span>1,872 个风险日</span
+            ><span>57 个事前问题统一扫描</span>
           </div>
         </div>
       </section>
 
       <section class="value-strip" aria-label="评估内容">
-        <div><b>01</b><span>识别真正影响结果的信号</span></div>
-        <div><b>02</b><span>理解哪些常见说法没有证据</span></div>
-        <div><b>03</b><span>获得针对当前情境的建议</span></div>
+        <div>
+          <b>01</b
+          ><span
+            >账号逐日进入风险集<small>避免把早填问卷者当长期幸存者</small></span
+          >
+        </div>
+        <div>
+          <b>02</b
+          ><span
+            >日期效应单独控制<small>降低共同事件窗口造成的混淆</small></span
+          >
+        </div>
+        <div>
+          <b>03</b
+          ><span>多重比较统一校正<small>不只挑看起来显著的结果</small></span>
+        </div>
       </section>
 
       <!-- ═══ Assessment ═══ -->
       <section id="assessment" class="assessment">
         <header class="section-head">
           <p class="overline">快速评估</p>
-          <h2>按实际情况<br />回答十一题</h2>
+          <h2>11 题，得到<br />一份个人解释</h2>
           <p class="sub">
             没有标准答案，也不用猜平台喜欢什么。按最近 7 天的情况选择即可。
           </p>
@@ -60,7 +74,9 @@
             <img src="assets/form-routes.webp" alt="" />
             <div>
               <span>01—11</span>
-              <p>每个答案都会在结果中说明是否参与评分，以及证据强弱。</p>
+              <p>
+                按实际情况选择。结果会告诉你哪些因素证据较强，哪些只是轻微修正。
+              </p>
             </div>
           </aside>
           <form id="riskForm" novalidate>
@@ -513,11 +529,20 @@
             <div class="score"><b id="riskScore">—</b><span>/ 100</span></div>
           </div>
           <p id="riskMeaning" class="result-meaning"></p>
+          <div class="result-meta" aria-label="结果证据说明">
+            <span><small>证据等级</small><b id="evidenceLevel">—</b></span>
+            <span><small>指数中心</small><b>50 = 中性</b></span>
+            <span><small>模型口径</small><b>关联，不是概率</b></span>
+          </div>
         </header>
         <div class="result-columns">
           <div>
-            <h3>本次加分与减分</h3>
+            <h3>最影响结果的项目</h3>
             <ul id="factorList"></ul>
+            <details class="secondary-factors">
+              <summary>查看其余回答如何参与计算</summary>
+              <ul id="secondaryFactorList"></ul>
+            </details>
           </div>
           <div>
             <h3>建议</h3>
@@ -527,8 +552,8 @@
         <div class="result-caveat">
           <strong>不是封号概率</strong>
           <p>
-            百分制只是把各题权重换算到
-            0–100，方便阅读。它不是平台评分，也不是你未来被封的概率。
+            指数以 50
+            为中性点，依据效应量和证据稳定性加权。它不是平台评分，也不是你未来被封的概率。
           </p>
         </div>
       </section>
@@ -536,43 +561,50 @@
       <section class="findings" aria-labelledby="findingsTitle">
         <header class="findings-head">
           <p class="overline">研究发现</p>
-          <h2 id="findingsTitle">哪些因素值得看，<br />哪些暂时别下结论</h2>
+          <h2 id="findingsTitle">先看证据，<br />再看结论</h2>
           <p>
-            这次分析纳入 249 个账号和 1,872
-            个风险日。下面说的都是问卷里的相关性，不是平台公开的封号规则。
+            主分析纳入 249 个账号和 1,872
+            个风险日。下面都是样本内关联，不是平台公开的封号规则。
           </p>
         </header>
 
         <article class="finding finding-signal">
           <div class="finding-copy">
             <span>先检查这一项</span>
-            <h3>如果人在大陆，先确认代理有没有掉线</h3>
+            <h3>需要代理的场景里，先确认连接有没有失效</h3>
             <p>
               回答“可能发生过”的账号，每日异常风险比约为 2.18（95% CI
-              1.49–3.21）。这项关系最稳定，但仍可能混入所在地和回忆误差。
+              1.49–3.21）。这是目前最稳定的具体选项，但仍可能混入所在地和回忆误差。
             </p>
           </div>
-          <svg
-            viewBox="0 0 520 180"
-            role="img"
-            aria-label="未代理连接风险比及置信区间"
-          >
-            <line x1="65" y1="115" x2="480" y2="115" />
-            <line class="reference" x1="150" y1="35" x2="150" y2="145" />
-            <line class="interval" x1="244" y1="88" x2="433" y2="88" />
-            <circle cx="321" cy="88" r="11" />
-            <text x="65" y="145">0.5</text>
-            <text x="142" y="145">1</text>
-            <text x="271" y="145">2</text>
-            <text x="451" y="145">4</text>
-            <text class="chart-value" x="300" y="55">OR 2.18</text>
-          </svg>
+          <div class="risk-evidence">
+            <svg
+              viewBox="0 0 520 180"
+              role="img"
+              aria-label="未代理连接风险比及置信区间"
+            >
+              <line x1="65" y1="115" x2="480" y2="115" />
+              <line class="reference" x1="150" y1="35" x2="150" y2="145" />
+              <line class="interval" x1="244" y1="88" x2="433" y2="88" />
+              <circle cx="321" cy="88" r="11" />
+              <text x="65" y="145">0.5</text>
+              <text x="142" y="145">1</text>
+              <text x="271" y="145">2</text>
+              <text x="451" y="145">4</text>
+              <text class="chart-value" x="300" y="55">OR 2.18</text>
+            </svg>
+            <ul class="compact-evidence">
+              <li><b>账号使用 1–6 个月</b><span>OR 1.87</span></li>
+              <li><b>新加坡节点</b><span>OR 2.25 · 探索性</span></li>
+              <li><b>机构网络</b><span>OR 3.42 · n=10</span></li>
+            </ul>
+          </div>
         </article>
 
         <article class="finding finding-protective">
           <div class="finding-copy">
             <span>较低风险方向</span>
-            <h3>保护因素也要看，但不能把它们当成“保号技巧”</h3>
+            <h3>较低风险方向可以参考，不能照抄成“保号技巧”</h3>
             <p>
               下面几项在预设分析中和较低风险同时出现。部分组样本很少，而且没有全部通过严格的全变量校正。
             </p>
@@ -603,15 +635,15 @@
         <article class="finding finding-null">
           <div class="finding-copy">
             <span>暂时看不出差别</span>
-            <h3>使用入口、额度、时区和 Google 手机号都不该拿来吓人</h3>
+            <h3>中文、使用入口、高用量和 Google 手机号，目前都不是重点</h3>
             <p>
               当前样本没有给出稳定关系。这不等于它们永远无关，只是现在没有理由把这些项目写进风险分。
             </p>
           </div>
           <ul class="null-list">
+            <li><b>中文或混合语言</b><span>q≥0.837</span></li>
             <li><b>使用入口</b><span>q=0.441</span></li>
             <li><b>额度使用</b><span>q=0.885</span></li>
-            <li><b>设备时区</b><span>q≥0.646</span></li>
             <li><b>Google 手机号</b><span>n=39，q≥0.703</span></li>
           </ul>
         </article>
