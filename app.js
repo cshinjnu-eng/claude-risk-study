@@ -72,10 +72,10 @@ const EVIDENCE = {
     not_google: [0.02, "不使用 Google 登录", "弱证据"],
   },
   fingerprint_browser: {
-    never: [-0.21, "从未使用指纹浏览器", "探索性"],
-    fixed: [0.03, "使用固定的指纹浏览器环境", "弱证据"],
-    changed: [0.08, "指纹浏览器环境有变化", "弱证据"],
-    unknown: [0.05, "不确定是否使用过指纹浏览器", "弱证据"],
+    never: [-0.02, "从未使用指纹浏览器", "证据不足"],
+    fixed: [0.01, "使用固定的指纹浏览器环境", "证据不足"],
+    changed: [0.02, "指纹浏览器环境有变化", "证据不足"],
+    unknown: [0.01, "不确定是否使用过指纹浏览器", "证据不足"],
   },
   payment_method: {
     own: [-0.35, "本人支付", "接近显著"],
@@ -96,6 +96,13 @@ const EVIDENCE = {
 
 const REQUIRED = Object.keys(EVIDENCE);
 const INDEX_TEMPERATURE = 0.6;
+const PROFILE_LABELS = {
+  actual_location: "所在地",
+  account_age: "账号年龄",
+  unproxied: "代理失效情况",
+  node_type: "网络类型",
+  payment_method: "付款方式",
+};
 
 function renderStep() {
   riskSteps.forEach((step, index) => {
@@ -197,6 +204,47 @@ function computeRisk(answers) {
   };
 }
 
+function renderPeerGroup(answers) {
+  const data = window.SIMILARITY_DATA;
+  if (!data) return;
+  let match = null;
+  let keys = [];
+  for (const group of data.groups) {
+    const values = group.keys.map((key) => answers[key]);
+    const candidate = group.values[values.join("|")];
+    if (candidate) {
+      match = candidate;
+      keys = group.keys;
+      break;
+    }
+  }
+  if (!match) {
+    match = { n: data.eligible, events: data.events, rate: data.overall_rate };
+  }
+  document.querySelector("#peerCount").textContent = match.n;
+  document.querySelector("#peerRate").textContent =
+    `${Math.round(match.rate * 100)}%`;
+  document.querySelector("#peerBasis").textContent = keys.length
+    ? `按${keys.map((key) => PROFILE_LABELS[key]).join("、")}匹配；组合不足 10 人时会自动放宽。`
+    : "没有足够大的细分组，因此显示全部明确状态样本。";
+  document.querySelector("#peerBiasNote").textContent =
+    `当前自愿样本整体有 ${Math.round(data.overall_rate * 100)}% 报告被封、受限或曾发生异常，` +
+    "异常用户明显过度代表。这里的组内比例不等于你的封号概率。";
+}
+
+function renderLowEventProfiles() {
+  const data = window.SIMILARITY_DATA;
+  const target = document.querySelector("#lowEventProfiles");
+  if (!data || !target) return;
+  target.innerHTML = data.low_event_profiles
+    .map(
+      (item) =>
+        `<li><b>${item.label}<small>${item.dimension} · n=${item.n}</small></b>` +
+        `<span>${Math.round(item.rate * 100)}% 报告异常</span></li>`,
+    )
+    .join("");
+}
+
 riskForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const answers = Object.fromEntries(
@@ -221,9 +269,11 @@ riskForm.addEventListener("submit", (event) => {
   document.querySelector("#adviceList").innerHTML = risk.advice
     .map((item) => `<li>${item}</li>`)
     .join("");
+  renderPeerGroup(answers);
   resultSection.hidden = false;
   participation.hidden = false;
   resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
+renderLowEventProfiles();
 renderStep();

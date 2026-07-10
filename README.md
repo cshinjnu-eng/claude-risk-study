@@ -25,7 +25,9 @@ HOST=127.0.0.1 PORT=8780 python3 server.py
 ## 主要文件
 
 - `index.html`：风险自测与研究发现
-- `app.js`：逐题交互、评分和自愿提交
+- `app.js`：逐题交互、证据指数、相似人群和结果解释
+- `audience_profile_stats.js`：飞书短版问卷生成的匿名聚合相似人群统计
+- `scripts/build_similarity_data.py`：刷新相似人群统计的生成脚本
 - `server.py`：静态文件与提交接口
 - `promo-poster.png`：宣传海报
 - `posters/`：五张“中文 / Claude Code / 高用量”辟谣图文

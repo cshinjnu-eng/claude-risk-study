@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Claude 账号异常风险信号自测：基于279份问卷、249个纳入账号和1872个风险日。"
+      content="Claude 账号异常风险信号自测：累计315份问卷，主分析包含249个账号和1872个风险日。"
     />
     <title>Claude 风险信号自测 | 独立调查</title>
     <link rel="stylesheet" href="styles.css" />
@@ -14,14 +14,14 @@
     <!-- Atmosphere -->
     <header class="site-head">
       <a href="#top" class="wordmark">Claude / Risk Study</a>
-      <div class="study-state"><span></span>279 份调查支持</div>
+      <div class="study-state"><span></span>累计 315 份问卷</div>
     </header>
 
     <main id="top">
       <!-- ═══ Hero ═══ -->
       <section class="hero">
         <div class="hero-copy">
-          <p class="kicker">279 份问卷后的公开结果</p>
+          <p class="kicker">截至 7 月 10 日累计 315 份问卷</p>
           <h1>别靠传言猜。<br />看看哪些信号<span>真的值得看</span></h1>
           <p class="lead">
             11
@@ -34,8 +34,8 @@
             <span class="hero-meta">约 90 秒 · 不需要账号信息</span>
           </div>
           <div class="hero-proof">
-            <span>249 个账号纳入主分析</span><span>1,872 个风险日</span
-            ><span>57 个事前问题统一扫描</span>
+            <span>249 个账号进入每日风险模型</span><span>1,872 个风险日</span
+            ><span>289 份短版用于相似人群比较</span>
           </div>
         </div>
       </section>
@@ -549,6 +549,20 @@
             <ul id="adviceList"></ul>
           </div>
         </div>
+        <section class="peer-panel" aria-labelledby="peerTitle">
+          <header>
+            <p>和你核心情况相近的受访者</p>
+            <h3 id="peerTitle"><b id="peerCount">—</b> 人</h3>
+          </header>
+          <div class="peer-rate">
+            <b id="peerRate">—</b>
+            <span>报告被封、受限或曾发生异常</span>
+          </div>
+          <div class="peer-note">
+            <p id="peerBasis">正在匹配核心画像…</p>
+            <small id="peerBiasNote"></small>
+          </div>
+        </section>
         <div class="result-caveat">
           <strong>不是封号概率</strong>
           <p>
@@ -563,7 +577,7 @@
           <p class="overline">研究发现</p>
           <h2 id="findingsTitle">先看证据，<br />再看结论</h2>
           <p>
-            主分析纳入 249 个账号和 1,872
+            累计收集 315 份问卷；每日风险模型纳入 249 个账号和 1,872
             个风险日。下面都是样本内关联，不是平台公开的封号规则。
           </p>
         </header>
@@ -603,18 +617,14 @@
 
         <article class="finding finding-protective">
           <div class="finding-copy">
-            <span>较低风险方向</span>
-            <h3>较低风险方向可以参考，不能照抄成“保号技巧”</h3>
+            <span>很少报告异常的人</span>
+            <h3>当前样本里，异常比例相对较低的人是什么样？</h3>
             <p>
-              下面几项在预设分析中和较低风险同时出现。部分组样本很少，而且没有全部通过严格的全变量校正。
+              下面是 289
+              份短版问卷中的描述性结果。它更适合帮助理解幸存者画像，不能反过来当成“保号教程”。
             </p>
           </div>
-          <ul class="null-list direction-list">
-            <li><b>Google 地区为美国/加拿大</b><span>OR 0.14</span></li>
-            <li><b>从未使用指纹浏览器</b><span>OR 0.55</span></li>
-            <li><b>私人独享节点</b><span>OR 0.56</span></li>
-            <li><b>机房或数据中心 IP</b><span>OR 0.58</span></li>
-          </ul>
+          <ul id="lowEventProfiles" class="null-list survivor-list"></ul>
         </article>
 
         <article class="finding finding-payment">
@@ -866,6 +876,7 @@
       <p>与 Anthropic 无隶属关系</p>
     </footer>
 
+    <script src="audience_profile_stats.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
