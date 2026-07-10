@@ -673,6 +673,16 @@ legend > span {
   margin: 0;
   color: var(--muted);
 }
+.plain-stat {
+  display: block;
+  max-width: 540px;
+  margin-top: 16px;
+  padding-left: 13px;
+  border-left: 2px solid var(--red);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.65;
+}
 .finding svg {
   width: 100%;
   color: var(--ink);
@@ -720,11 +730,8 @@ legend > span {
 }
 .compact-evidence span {
   color: var(--red-dark);
-  font:
-    12px ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    monospace;
+  font-size: 12px;
+  text-align: right;
 }
 .null-list {
   list-style: none;
@@ -747,10 +754,6 @@ legend > span {
     Menlo,
     monospace;
 }
-.direction-list span {
-  color: var(--red-dark);
-  font-weight: 700;
-}
 .survivor-list li {
   align-items: center;
 }
@@ -764,29 +767,6 @@ legend > span {
 .survivor-list span {
   color: var(--red-dark);
   font-weight: 700;
-}
-.payment-mark {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: end;
-  column-gap: 24px;
-  padding: 35px 0;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-}
-.payment-mark b {
-  grid-row: 1/3;
-  color: var(--red);
-  font:
-    650 clamp(78px, 10vw, 138px) / 0.85 ui-monospace,
-    monospace;
-  letter-spacing: -0.08em;
-}
-.payment-mark span {
-  font-weight: 700;
-}
-.payment-mark small {
-  color: var(--muted);
 }
 .participation {
   max-width: var(--max);
@@ -1116,6 +1096,15 @@ footer p {
   .finding {
     gap: 25px;
     padding: 44px 0;
+  }
+  .compact-evidence li,
+  .null-list li {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .compact-evidence span {
+    text-align: left;
   }
   .participation {
     padding: 75px 18px;

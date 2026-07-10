@@ -225,18 +225,19 @@ function renderPeerGroup(answers) {
   document.querySelector("#peerRate").textContent =
     `${Math.round(match.rate * 100)}%`;
   document.querySelector("#peerBasis").textContent = keys.length
-    ? `按${keys.map((key) => PROFILE_LABELS[key]).join("、")}匹配；组合不足 10 人时会自动放宽。`
-    : "没有足够大的细分组，因此显示全部明确状态样本。";
+    ? `本次按 ${keys.length} 项匹配：${keys.map((key) => PROFILE_LABELS[key]).join("、")}。这是相近画像，不是完全一致。`
+    : "没有找到至少 10 人的相近细分组，因此改为显示全部明确状态样本。";
   document.querySelector("#peerBiasNote").textContent =
     `当前自愿样本整体有 ${Math.round(data.overall_rate * 100)}% 报告被封、受限或曾发生异常，` +
-    "异常用户明显过度代表。这里的组内比例不等于你的封号概率。";
+    "异常用户明显过度代表。这里的组内比例不等于你的封号概率。测试共 11 题，其中 5 题用于相似人群匹配。";
 }
 
 function renderLowEventProfiles() {
   const data = window.SIMILARITY_DATA;
   const target = document.querySelector("#lowEventProfiles");
   if (!data || !target) return;
-  target.innerHTML = data.low_event_profiles
+  target.innerHTML = [...data.low_event_profiles]
+    .sort((a, b) => a.rate - b.rate)
     .map(
       (item) =>
         `<li><b>${item.label}<small>${item.dimension} · n=${item.n}</small></b>` +

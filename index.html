@@ -575,21 +575,25 @@
       <section class="findings" aria-labelledby="findingsTitle">
         <header class="findings-head">
           <p class="overline">研究发现</p>
-          <h2 id="findingsTitle">先看证据，<br />再看结论</h2>
+          <h2 id="findingsTitle">目前最值得看的，<br />其实不多</h2>
           <p>
-            累计收集 315 份问卷；每日风险模型纳入 249 个账号和 1,872
-            个风险日。下面都是样本内关联，不是平台公开的封号规则。
+            累计收集 315 份问卷。主分析把 249 个账号展开成 1,872
+            个风险日，比较账号在每一天发生异常的相对风险。下面是样本内线索，不是平台公开规则。
           </p>
         </header>
 
         <article class="finding finding-signal">
           <div class="finding-copy">
-            <span>先检查这一项</span>
-            <h3>需要代理的场景里，先确认连接有没有失效</h3>
+            <span>目前最清晰的风险信号</span>
+            <h3>如果需要代理，连接是否曾在使用中失效？</h3>
             <p>
-              回答“可能发生过”的账号，每日异常风险比约为 2.18（95% CI
-              1.49–3.21）。这是目前最稳定的具体选项，但仍可能混入所在地和回忆误差。
+              回答“可能发生过”的账号，当天发生异常的相对风险约为参照组的 2.18
+              倍。它是目前最稳定的具体选项，但仍可能受到实际所在地和回忆误差影响。
             </p>
+            <small class="plain-stat"
+              >2.18 倍是两组之间的相对比较，不是“增加 118
+              个百分点”，也不是个人封号概率。</small
+            >
           </div>
           <div class="risk-evidence">
             <svg
@@ -608,53 +612,46 @@
               <text class="chart-value" x="300" y="55">OR 2.18</text>
             </svg>
             <ul class="compact-evidence">
-              <li><b>账号使用 1–6 个月</b><span>OR 1.87</span></li>
-              <li><b>新加坡节点</b><span>OR 2.25 · 探索性</span></li>
-              <li><b>机构网络</b><span>OR 3.42 · n=10</span></li>
+              <li>
+                <b>账号使用 1–6 个月</b><span>风险方向较稳定 · 约 1.87 倍</span>
+              </li>
+              <li>
+                <b>新加坡节点</b><span>初步看到较高方向 · 还需更多数据</span>
+              </li>
+              <li><b>机构网络</b><span>仅 10 个账号 · 暂不下结论</span></li>
             </ul>
           </div>
         </article>
 
         <article class="finding finding-protective">
           <div class="finding-copy">
-            <span>很少报告异常的人</span>
-            <h3>当前样本里，异常比例相对较低的人是什么样？</h3>
+            <span>描述性画像，不是模型结论</span>
+            <h3>哪些受访者较少报告异常？</h3>
             <p>
-              下面是 289
-              份短版问卷中的描述性结果。它更适合帮助理解幸存者画像，不能反过来当成“保号教程”。
+              下面直接统计 289
+              份短版问卷的组内比例，没有控制其他差异。它可以描述样本中的“幸存者”，不能当作保号教程。
             </p>
           </div>
           <ul id="lowEventProfiles" class="null-list survivor-list"></ul>
         </article>
 
-        <article class="finding finding-payment">
-          <div class="finding-copy">
-            <span>支付方式</span>
-            <h3>本人支付呈较低风险方向，其他付款方式暂时分不出高下</h3>
-            <p>
-              本人银行卡或长期使用的支付账号 OR 约为 0.42，但校正后
-              q=0.063，只能算接近显著。付款失败属于另一类事件，不和封禁、受限混在一起评分。
-            </p>
-          </div>
-          <div class="payment-mark" aria-label="本人支付风险比约0.42">
-            <b>0.42</b><span>本人支付的观察 OR</span
-            ><small>95% CI 0.18–0.97</small>
-          </div>
-        </article>
-
         <article class="finding finding-null">
           <div class="finding-copy">
-            <span>暂时看不出差别</span>
-            <h3>中文、使用入口、高用量和 Google 手机号，目前都不是重点</h3>
+            <span>目前没有稳定证据</span>
+            <h3>这些常见传言，暂时不用过度紧张</h3>
             <p>
-              当前样本没有给出稳定关系。这不等于它们永远无关，只是现在没有理由把这些项目写进风险分。
+              中文、Claude Code、使用额度和 Google
+              绑定手机号都做过检验，目前没有稳定差异。支付方面只有“本人长期支付”呈现较低风险方向，证据仍未达到严格门槛。
             </p>
           </div>
           <ul class="null-list">
-            <li><b>中文或混合语言</b><span>q≥0.837</span></li>
-            <li><b>使用入口</b><span>q=0.441</span></li>
-            <li><b>额度使用</b><span>q=0.885</span></li>
-            <li><b>Google 手机号</b><span>n=39，q≥0.703</span></li>
+            <li><b>中文或混合语言</b><span>未见稳定差异</span></li>
+            <li><b>Claude Code 或其他入口</b><span>未见稳定差异</span></li>
+            <li><b>高用量</b><span>未见稳定差异</span></li>
+            <li>
+              <b>Google 绑定手机号</b><span>有效回答较少，暂不下结论</span>
+            </li>
+            <li><b>本人长期支付</b><span>较低风险方向，继续观察</span></li>
           </ul>
         </article>
       </section>

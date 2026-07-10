@@ -6,7 +6,7 @@ from __future__ import annotations
 import json
 import os
 import subprocess
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -68,8 +68,15 @@ def map_profile(row: list) -> dict[str, str | None]:
         location = "taiwan"
     elif "美国或加拿大" in location:
         location = "us_ca"
-    elif location:
+    elif location in (
+        "日本、韩国或新加坡",
+        "欧洲",
+        "香港或澳门",
+        "澳大利亚或新西兰",
+    ):
         location = "other_supported"
+    elif location:
+        location = "other"
     else:
         location = None
 
@@ -83,8 +90,11 @@ def map_profile(row: list) -> dict[str, str | None]:
         "3 年以上": "over_1y",
     }
 
+    proxy_use = text(row[14])
     unproxied = text(row[3])
-    if unproxied == "从未":
+    if proxy_use == "基本不使用":
+        unproxied = "not_applicable"
+    elif unproxied == "从未":
         unproxied = "never"
     elif unproxied in ("可能发生过", "明确发生过一次"):
         unproxied = "possible"
@@ -102,6 +112,9 @@ def map_profile(row: list) -> dict[str, str | None]:
         "公司、学校或机构网络": "organization",
         "不知道": "unknown",
     }
+    mapped_node_type = (
+        "not_applicable" if proxy_use == "基本不使用" else node_map.get(node_type)
+    )
 
     payment = text(row[31])
     if "本人银行卡" in payment:
@@ -121,7 +134,7 @@ def map_profile(row: list) -> dict[str, str | None]:
         "actual_location": location,
         "account_age": age_map.get(age),
         "unproxied": unproxied,
-        "node_type": node_map.get(node_type),
+        "node_type": mapped_node_type,
         "payment_method": payment,
     }
 
@@ -188,14 +201,31 @@ def main() -> None:
         ["account_age", "unproxied", "payment_method"],
         ["account_age", "unproxied"],
         ["account_age"],
+        ["unproxied", "node_type"],
+        ["unproxied"],
+        ["node_type"],
+        ["payment_method"],
+        ["actual_location"],
     ]
+    groups = [{"keys": keys, "values": aggregate(rows, keys)} for keys in specs]
+    coverage = Counter()
+    for row in rows:
+        matched = 0
+        for group in groups:
+            values = [row["profile"].get(key) for key in group["keys"]]
+            if None not in values and "|".join(values) in group["values"]:
+                matched = len(group["keys"])
+                break
+        coverage[str(matched)] += 1
+
     payload = {
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "responses": len(source_rows),
         "eligible": len(rows),
         "events": sum(row["outcome"] for row in rows),
         "overall_rate": round(sum(row["outcome"] for row in rows) / len(rows), 4),
-        "groups": [{"keys": keys, "values": aggregate(rows, keys)} for keys in specs],
+        "groups": groups,
+        "match_coverage": dict(sorted(coverage.items(), reverse=True)),
         "low_event_profiles": low_event_profiles(source_rows, rows),
     }
     OUT.write_text(
@@ -206,7 +236,8 @@ def main() -> None:
     )
     print(
         f"wrote {OUT.name}: {payload['responses']} responses, "
-        f"{payload['eligible']} eligible, {len(payload['groups'])} group levels"
+        f"{payload['eligible']} eligible, {len(payload['groups'])} group levels, "
+        f"coverage={payload['match_coverage']}"
     )
 
 
