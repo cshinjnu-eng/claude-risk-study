@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Claude 风险调查｜四页小红书海报</title>
+    <style>
+      :root {
+        --cream: #f3f0e7;
+        --ink: #161614;
+        --red: #f04438;
+        --gray: #77766f;
+        --light: #d8d5cc;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        background: #777;
+        font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+      }
+      .poster {
+        position: relative;
+        width: 1080px;
+        height: 1350px;
+        overflow: hidden;
+        padding: 70px 76px 64px;
+        color: var(--ink);
+        background: var(--cream);
+      }
+      .poster + .poster {
+        margin-top: 32px;
+      }
+      .top,
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .top {
+        padding-bottom: 20px;
+        border-bottom: 1px solid currentColor;
+        font:
+          700 15px ui-monospace,
+          monospace;
+        letter-spacing: 0.08em;
+      }
+      .top b {
+        color: var(--red);
+      }
+      .footer {
+        position: absolute;
+        left: 76px;
+        right: 76px;
+        bottom: 58px;
+        padding-top: 16px;
+        border-top: 1px solid currentColor;
+        font-size: 14px;
+      }
+      .footer .entry {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .mini-qr {
+        width: 56px;
+        height: 56px;
+        padding: 4px;
+        background: #fff;
+      }
+      .url {
+        font:
+          700 13px ui-monospace,
+          monospace;
+      }
+      h1,
+      h2,
+      p {
+        margin-top: 0;
+      }
+      h1 {
+        letter-spacing: -0.06em;
+        line-height: 1.02;
+      }
+      .eyebrow {
+        margin: 0;
+        color: var(--red);
+        font:
+          700 16px ui-monospace,
+          monospace;
+        letter-spacing: 0.06em;
+      }
+      .cover {
+        color: #f5f1e8;
+        background: var(--ink) url("../assets/hero-network.webp") 66% center /
+          cover no-repeat;
+      }
+      .cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(18, 18, 16, 0.78);
+      }
+      .cover > * {
+        position: relative;
+      }
+      .cover .top {
+        border-color: rgba(255, 255, 255, 0.42);
+      }
+      .cover h1 {
+        max-width: 850px;
+        margin: 100px 0 32px;
+        font-size: 94px;
+      }
+      .cover h1 em {
+        color: var(--red);
+        font-style: normal;
+      }
+      .cover .lead {
+        max-width: 690px;
+        color: #d1cec5;
+        font-size: 30px;
+        line-height: 1.55;
+      }
+      .myth-lines {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0;
+        margin-top: 88px;
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      }
+      .myth-lines div {
+        min-height: 180px;
+        padding: 26px 22px 20px 0;
+      }
+      .myth-lines div + div {
+        padding-left: 25px;
+        border-left: 1px solid rgba(255, 255, 255, 0.35);
+      }
+      .myth-lines s {
+        display: block;
+        color: #aaa79f;
+        font-size: 21px;
+        text-decoration-color: var(--red);
+        text-decoration-thickness: 4px;
+      }
+      .myth-lines b {
+        display: block;
+        margin-top: 14px;
+        color: #f7f3ea;
+        font-size: 24px;
+        line-height: 1.3;
+      }
+      .cover .proof {
+        position: absolute;
+        right: 76px;
+        bottom: 162px;
+        max-width: 360px;
+        color: #ccc9c0;
+        font-size: 18px;
+        line-height: 1.55;
+      }
+      .cover .proof b {
+        display: block;
+        margin-bottom: 6px;
+        color: #fff;
+        font:
+          700 24px ui-monospace,
+          monospace;
+      }
+      .cover .footer {
+        border-color: rgba(255, 255, 255, 0.42);
+        color: #c9c6bd;
+      }
+      .signal {
+        background: var(--cream);
+      }
+      .signal h1 {
+        max-width: 700px;
+        margin: 78px 0 22px;
+        font-size: 70px;
+      }
+      .signal .intro {
+        max-width: 650px;
+        color: var(--gray);
+        font-size: 26px;
+        line-height: 1.5;
+      }
+      .signal-grid {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: 65px;
+        margin-top: 74px;
+      }
+      .big-number {
+        color: var(--red);
+        font:
+          700 205px/0.8 ui-monospace,
+          monospace;
+        letter-spacing: -0.11em;
+      }
+      .big-number small {
+        display: block;
+        margin: 22px 0 0 18px;
+        color: var(--ink);
+        font:
+          700 25px/1.2 "PingFang SC",
+          sans-serif;
+        letter-spacing: -0.02em;
+      }
+      .signal-note {
+        margin: 40px 0 0;
+        padding-left: 16px;
+        border-left: 3px solid var(--red);
+        font-size: 19px;
+        line-height: 1.55;
+      }
+      .route {
+        position: relative;
+        min-height: 320px;
+        border-bottom: 1px solid var(--ink);
+      }
+      .route svg {
+        width: 100%;
+        height: 210px;
+      }
+      .route-text {
+        position: absolute;
+        right: 0;
+        bottom: 24px;
+        max-width: 470px;
+        color: var(--gray);
+        font-size: 19px;
+        line-height: 1.5;
+      }
+      .supporting {
+        margin-top: 50px;
+        border-top: 1px solid var(--ink);
+      }
+      .supporting div {
+        display: flex;
+        justify-content: space-between;
+        gap: 25px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--light);
+      }
+      .supporting b {
+        font-size: 22px;
+      }
+      .supporting span {
+        color: var(--red);
+        font-size: 18px;
+        text-align: right;
+      }
+      .profiles {
+        color: #f5f1e8;
+        background: var(--ink);
+      }
+      .profiles .top {
+        border-color: rgba(255, 255, 255, 0.42);
+      }
+      .profiles h1 {
+        max-width: 800px;
+        margin: 75px 0 20px;
+        font-size: 76px;
+      }
+      .profiles .intro {
+        max-width: 720px;
+        color: #c5c2b9;
+        font-size: 25px;
+        line-height: 1.5;
+      }
+      .baseline {
+        margin-top: 42px;
+        padding: 16px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+        color: #cbc7be;
+        font-size: 18px;
+      }
+      .baseline b {
+        color: var(--red);
+        font:
+          700 34px ui-monospace,
+          monospace;
+      }
+      .strips {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr 1.2fr 0.9fr;
+        align-items: end;
+        gap: 14px;
+        height: 390px;
+        margin-top: 55px;
+      }
+      .strip {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px 18px;
+        color: var(--ink);
+        background: #e7e2d6;
+      }
+      .strip:nth-child(2) {
+        background: #c9c4b8;
+      }
+      .strip:nth-child(3) {
+        background: #a8a399;
+      }
+      .strip:nth-child(4) {
+        background: var(--red);
+      }
+      .strip .rate {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        font:
+          700 48px ui-monospace,
+          monospace;
+        letter-spacing: -0.06em;
+      }
+      .strip strong {
+        font-size: 20px;
+        line-height: 1.25;
+      }
+      .strip small {
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      .profiles .rule {
+        margin-top: 40px;
+        color: #c5c2b9;
+        font-size: 18px;
+        line-height: 1.55;
+      }
+      .profiles .footer {
+        border-color: rgba(255, 255, 255, 0.42);
+        color: #c9c6bd;
+      }
+      .method {
+        background: var(--red);
+      }
+      .method .top b {
+        color: var(--ink);
+      }
+      .method h1 {
+        max-width: 760px;
+        margin: 78px 0 24px;
+        font-size: 80px;
+      }
+      .myths {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 52px;
+        margin-top: 56px;
+        border-top: 1px solid var(--ink);
+      }
+      .myths div {
+        padding: 21px 0;
+        border-bottom: 1px solid rgba(22, 22, 20, 0.58);
+        font-size: 24px;
+      }
+      .myths b {
+        display: inline-block;
+        margin-right: 10px;
+        color: #fff7ec;
+        font:
+          700 18px ui-monospace,
+          monospace;
+      }
+      .method-bottom {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 55px;
+        align-items: end;
+        margin-top: 52px;
+      }
+      .numbers {
+        border-top: 1px solid var(--ink);
+      }
+      .numbers p {
+        margin: 0;
+        padding: 13px 0;
+        border-bottom: 1px solid rgba(22, 22, 20, 0.58);
+        font-size: 19px;
+      }
+      .numbers b {
+        display: inline-block;
+        min-width: 116px;
+        font:
+          700 28px ui-monospace,
+          monospace;
+      }
+      .qr-box {
+        padding: 16px;
+        background: #fffaf0;
+      }
+      .qr-box img {
+        display: block;
+        width: 268px;
+        height: 268px;
+      }
+      .qr-box span {
+        display: block;
+        margin-top: 12px;
+        color: var(--ink);
+        font-size: 16px;
+        line-height: 1.35;
+      }
+      .method .footer {
+        color: rgba(22, 22, 20, 0.75);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="poster cover">
+      <div class="top"><span>CLAUDE / RISK STUDY</span><b>01 / 04</b></div>
+      <p class="eyebrow">一份独立问卷调查</p>
+      <h1>中文、Claude Code、<br />高用量，真的会导致<em>封号</em>吗？</h1>
+      <p class="lead">
+        我们把群聊里最常见的说法拿来逐项检验。现有数据没有发现这些因素存在稳定差异。
+      </p>
+      <div class="myth-lines">
+        <div><s>说中文</s><b>没有稳定证据</b></div>
+        <div><s>用 Claude Code</s><b>没有稳定证据</b></div>
+        <div><s>用得太多</s><b>没有稳定证据</b></div>
+      </div>
+      <p class="proof">
+        <b>315 份问卷</b>249
+        个账号进入每日风险模型。这里不提供“保号秘籍”，只把目前能看到的结果讲清楚。
+      </p>
+      <div class="footer">
+        <span>独立调查 · 非 Anthropic 官方产品</span
+        ><span class="entry"
+          ><img
+            class="mini-qr"
+            src="../assets/risk-checker-qr.png"
+            alt="测评二维码"
+          /><span class="url">claude-risk.bsbsanwu.xyz</span></span
+        >
+      </div>
+    </section>
+
+    <section class="poster signal">
+      <div class="top"><span>目前最清晰的线索</span><b>02 / 04</b></div>
+      <p class="eyebrow">先看连接状态</p>
+      <h1>如果需要代理，连接有没有在使用中失效？</h1>
+      <p class="intro">
+        回答“可能发生过”的账号，当天报告异常的相对风险更高。这是目前最稳定的具体线索。
+      </p>
+      <div class="signal-grid">
+        <div>
+          <div class="big-number">2.18<small>相对风险倍数</small></div>
+          <p class="signal-note">
+            这是两组之间的相对比较，不是“增加 118
+            个百分点”，更不是个人封号概率。
+          </p>
+        </div>
+        <div>
+          <div class="route">
+            <svg
+              viewBox="0 0 520 210"
+              role="img"
+              aria-label="一段中途断开的网络路径"
+            >
+              <path
+                d="M20 112 H180 L235 55 L288 158 L350 87 H500"
+                fill="none"
+                stroke="#161614"
+                stroke-width="4"
+              />
+              <path
+                d="M227 64 L273 148"
+                fill="none"
+                stroke="#f04438"
+                stroke-width="10"
+                stroke-dasharray="12 12"
+              />
+              <circle cx="20" cy="112" r="10" fill="#161614" />
+              <circle cx="500" cy="87" r="10" fill="#f04438" />
+              <text x="18" y="195" font-size="18" fill="#77766f">连接开始</text>
+              <text x="395" y="195" font-size="18" fill="#77766f">
+                继续访问
+              </text>
+            </svg>
+            <p class="route-text">
+              它仍可能混入实际所在地和回忆误差，所以只提示“值得先检查”，不替你判断账号会不会异常。
+            </p>
+          </div>
+          <div class="supporting">
+            <div><b>账号使用 1–6 个月</b><span>风险方向较稳定</span></div>
+            <div><b>新加坡节点</b><span>初步线索，仍需更多数据</span></div>
+            <div><b>机构网络</b><span>样本太少，暂不下结论</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>完整统计口径见网站</span
+        ><span class="entry"
+          ><img
+            class="mini-qr"
+            src="../assets/risk-checker-qr.png"
+            alt="测评二维码"
+          /><span class="url">11 题 · 约 90 秒</span></span
+        >
+      </div>
+    </section>
+
+    <section class="poster profiles">
+      <div class="top"><span>较少报告异常的人</span><b>03 / 04</b></div>
+      <p class="eyebrow">描述性统计，不是模型结论</p>
+      <h1>问卷里，哪些人较少报告异常？</h1>
+      <p class="intro">
+        下面直接统计短版问卷的组内比例，没有控制其他差异。它们描述的是样本中的人，不是“保号方法”。
+      </p>
+      <div class="baseline">
+        当前自愿样本整体有 <b>62%</b> 报告异常，异常用户被过度代表。
+      </div>
+      <div class="strips">
+        <div class="strip" style="height: 260px">
+          <span class="rate">32%</span><strong>固定少数人共用节点</strong
+          ><small>n=19</small>
+        </div>
+        <div class="strip" style="height: 305px">
+          <span class="rate">43%</span><strong>本人长期使用的支付账号</strong
+          ><small>n=23</small>
+        </div>
+        <div class="strip" style="height: 340px">
+          <span class="rate">47%</span><strong>机房或数据中心 IP</strong
+          ><small>n=93</small>
+        </div>
+        <div class="strip" style="height: 355px">
+          <span class="rate">48%</span><strong>账号使用 6–12 个月</strong
+          ><small>n=33</small>
+        </div>
+      </div>
+      <p class="rule">
+        它们只说明“在这份样本里，这些组报告异常较少”。换一个样本，比例可能不同。
+      </p>
+      <div class="footer">
+        <span>组内比例 ≠ 个人封号概率</span
+        ><span class="entry"
+          ><img
+            class="mini-qr"
+            src="../assets/risk-checker-qr.png"
+            alt="测评二维码"
+          /><span class="url">网站自测入口</span></span
+        >
+      </div>
+    </section>
+
+    <section class="poster method">
+      <div class="top"><span>辟谣与方法</span><b>04 / 04</b></div>
+      <p class="eyebrow" style="color: #161614">别为传言改掉正常习惯</p>
+      <h1>这些说法，目前都没有稳定证据。</h1>
+      <div class="myths">
+        <div><b>×</b>中文或混合语言</div>
+        <div><b>×</b>Claude Code 或其他入口</div>
+        <div><b>×</b>高用量</div>
+        <div><b>?</b>Google 绑定手机号：有效回答较少</div>
+      </div>
+      <div class="method-bottom">
+        <div class="numbers">
+          <p><b>315</b>份累计问卷</p>
+          <p><b>249</b>个账号进入每日风险模型</p>
+          <p><b>1,872</b>个风险日</p>
+          <p><b>57</b>个事前问题统一扫描</p>
+          <p>样本内关联不等于平台的官方封号规则。</p>
+        </div>
+        <div class="qr-box">
+          <img
+            src="../assets/risk-checker-qr.png"
+            alt="Claude 风险自测二维码"
+          /><span><b>11 题，约 90 秒</b><br />claude-risk.bsbsanwu.xyz</span>
+        </div>
+      </div>
+      <div class="footer">
+        <span>独立调查 · 非 Anthropic 官方产品</span
+        ><span>扫码进入风险自测</span>
+      </div>
+    </section>
+  </body>
+</html>

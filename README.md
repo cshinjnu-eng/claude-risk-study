@@ -30,5 +30,7 @@ HOST=127.0.0.1 PORT=8780 python3 server.py
 - `scripts/build_similarity_data.py`：刷新相似人群统计的生成脚本
 - `server.py`：静态文件与提交接口
 - `promo-poster.png`：宣传海报
-- `posters/`：五张“中文 / Claude Code / 高用量”辟谣图文
+- `posters/study-20260710.html`：四页小红书宣传图文源文件
+- `posters/01-cover.png` 至 `posters/04-method-and-qr.png`：四页宣传图成品
+- `assets/risk-checker-qr.png`：指向风险自测网站的二维码
 - `assets/findings/`：可单独发布的研究图文
